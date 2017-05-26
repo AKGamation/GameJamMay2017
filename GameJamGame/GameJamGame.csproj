@@ -87,6 +87,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Andrew\raycast.cs" />
     <Compile Include="Assets\Scripts\Andrew\stars.cs" />
   </ItemGroup>
   <ItemGroup>
