@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/Scenes/chris working.unity
-=======
-- path: Assets/Scenes/mainGame.unity
->>>>>>> 065066c2908f0a8536cc1cdc0ccd3c2e1376479f
   isLoaded: 1
   isActive: 1
