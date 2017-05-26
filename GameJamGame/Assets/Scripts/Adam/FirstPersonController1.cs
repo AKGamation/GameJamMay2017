@@ -47,16 +47,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float verticalDir;
         private Vector2 minmax;
         private Vector3 desiredMove;
-        private Vector3 prevVelocity;
 
         private float horizontal;
         private float vertical;
-
-        private float dirHorizontal;
-        private float dirForward;
-
-        private Vector2 horiClamp;
-        private Vector2 forwardClamp;
 
         // Use this for initialization
         private void Start()
@@ -142,20 +135,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MoveDir.x = desiredMove.x * speed;
             m_MoveDir.z = desiredMove.z * speed;
 
-            if (GravityOff)
-            {
-                if (m_Input.x == 0)
-                {
-                    m_MoveDir.x = prevVelocity.x + (Time.deltaTime * dirHorizontal);
-                    m_MoveDir.x = Mathf.Clamp(m_MoveDir.x, horiClamp.x, horiClamp.y);
-                }
-                if (m_Input.y == 0)
-                {
-                    m_MoveDir.z = prevVelocity.z + (Time.deltaTime * dirForward);
-                    m_MoveDir.z = Mathf.Clamp(m_MoveDir.z, forwardClamp.x, forwardClamp.y);
-                }
-            }
-
             if (m_CharacterController.isGrounded && !GravityOff)
             {
                 m_MoveDir.y = -m_StickToGroundForce;
@@ -194,8 +173,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_MoveDir += Physics.gravity * m_GravityMultiplier * Time.fixedDeltaTime;
             }
             m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
-
-            prevVelocity = m_MoveDir;
 
             ProgressStepCycle(speed);
             UpdateCameraPosition(speed);
@@ -276,28 +253,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // Read input
             horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
             vertical = CrossPlatformInputManager.GetAxis("Vertical");
-
-            if (horizontal > 0)
-            {
-                dirHorizontal = -1;
-                horiClamp = new Vector2(0, m_WalkSpeed);
-            }
-            else if (horizontal < 0)
-            {
-                dirHorizontal = 1;
-                horiClamp = new Vector2(-m_WalkSpeed, 0);
-            }
-
-            if (vertical > 0)
-            {
-                dirForward = -1;
-                forwardClamp = new Vector2(0, m_WalkSpeed);
-            }
-            else if (vertical < 0)
-            {
-                dirForward = 1;
-                forwardClamp = new Vector2(-m_WalkSpeed, 0);
-            }
 
             bool waswalking = m_IsWalking;
 
