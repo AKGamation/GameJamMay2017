@@ -89,6 +89,9 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Andrew\raycast.cs" />
     <Compile Include="Assets\Scripts\Andrew\stars.cs" />
+    <Compile Include="Assets\Scripts\David\Button.cs" />
+    <Compile Include="Assets\Scripts\David\Door basic.cs" />
+    <Compile Include="Assets\Scripts\David\LightingController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
