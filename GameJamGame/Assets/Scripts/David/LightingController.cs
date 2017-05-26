@@ -6,7 +6,7 @@ public class LightingController : MonoBehaviour {
 
 
     public GameObject button;
-    public bool lightState;
+    public bool lightState = true;
 
     //need event from button or sensor
 
@@ -22,8 +22,32 @@ public class LightingController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+
+        //if(button.buttonscript == true)
+        //{
+        //  lightstate = true;
+        //  GetComponent<Light>().enabled = false;
+        //{
+        //else
+        //{
+        //  lightstate = false
+        //  GetComponent<Light>().enabled = true;
+        //{
+
+        //testing
+        if(lightState == false)
+        {
+            GetComponent<Light>().enabled = false;
+        }
+        else if(lightState == true)
+        {
+            GetComponent<Light>().enabled = true;
+        }
+       
+
+
+    }
 
     void ToggleLight()
     {
