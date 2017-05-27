@@ -21,11 +21,11 @@ public class Doorbasic : MonoBehaviour {
         step = speed * Time.deltaTime;
         if (open == false)
         {
-            transform.position = Vector3.MoveTowards(transform.position, OpenPos.transform.position, step);
+            transform.position = Vector3.MoveTowards(transform.position, ClosePos.transform.position, step);
         }
         else if (open == true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, ClosePos.transform.position, step);
+            transform.position = Vector3.MoveTowards(transform.position, OpenPos.transform.position, step);
         }
 
         
