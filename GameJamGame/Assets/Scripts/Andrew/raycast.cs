@@ -18,10 +18,18 @@ public class raycast : MonoBehaviour
         // raycast
         if (Physics.Raycast(ray, out hitInfo, playerReach, layerMask, QueryTriggerInteraction.Ignore))
         {
-            Debug.Log("hit something");
-            if (Input.GetMouseButtonDown(0))
+            hitInfo.collider.gameObject.GetComponent<buttonStateManager>().state = buttonStateManager.buttonState.HOVER;
+            if (Input.GetMouseButton(0))
             {
-                Debug.Log("player has clicked on " + hitInfo.collider.gameObject.name);
+                hitInfo.collider.gameObject.GetComponent<buttonStateManager>().state = buttonStateManager.buttonState.HOLD;
+            }
+            if(Input.GetMouseButtonDown(0))
+            {
+                hitInfo.collider.gameObject.GetComponent<buttonStateManager>().state = buttonStateManager.buttonState.PRESS;
+            }
+            if(Input.GetMouseButtonUp(0))
+            {
+                hitInfo.collider.gameObject.GetComponent<buttonStateManager>().state = buttonStateManager.buttonState.RELEASE;
             }
         }
 	}
