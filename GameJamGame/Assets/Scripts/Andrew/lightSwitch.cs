@@ -23,7 +23,7 @@ public class lightSwitch : MonoBehaviour
     public void onPress()
     {
         lightOn = !lightOn;
-        lightToChange.intensity = (lightOn ? 0 : 1);
+        lightToChange.intensity = (lightOn ? 1 : 0);
     }
 
     // called when the button is held

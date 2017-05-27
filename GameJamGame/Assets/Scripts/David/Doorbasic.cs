@@ -18,7 +18,7 @@ public class Doorbasic : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        float step = speed * Time.deltaTime;
+        step = speed * Time.deltaTime;
         if (open == false)
         {
             transform.position = Vector3.MoveTowards(transform.position, OpenPos.transform.position, step);
@@ -32,19 +32,16 @@ public class Doorbasic : MonoBehaviour {
 
     }
 
-    private void DoorMove()
+   void toggleDoor()
     {
-        if (open == false)
+        if(open == true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, OpenPos.transform.position, step);
-            
+            open = false;
         }
-        else if(open == true)
+        else
         {
-            transform.position = Vector3.MoveTowards(transform.position, ClosePos.transform.position, step);
+            open = true;
         }
-
-
     }
 
 
