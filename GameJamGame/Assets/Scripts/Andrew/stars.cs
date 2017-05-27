@@ -16,6 +16,7 @@ public class stars : MonoBehaviour
 		for(int i = 0; i < numberOfStars; i++)
         {
             Vector3 newLocation = Random.onUnitSphere * distanceFromOrigin;
+            Vector3 newRotation = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             GameObject currentStar = Instantiate(starObject, newLocation, Quaternion.identity) as GameObject;
             currentStar.GetComponent<MeshRenderer>().material.color = Color.Lerp(colorRange[0], colorRange[1], Random.Range(0.0f, 1.0f));
         }
