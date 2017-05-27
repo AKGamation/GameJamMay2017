@@ -6,7 +6,7 @@ public class raycast : MonoBehaviour
 {
     public float playerReach; // how far the player can reach
     Ray ray;
-    RaycastHit hitInfo;
+    public RaycastHit hitInfo;
     private int layerMask = 1<<8;
 	
 	// Update is called once per frame
