@@ -5,27 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class switchScene : MonoBehaviour
 {
-    enum moveState { CLOSED, OPEN, CLOSING, OPENING };
-    moveState state = moveState.CLOSED;
+    public enum moveState { CLOSED, OPEN, CLOSING, OPENING };
+    public moveState state = moveState.CLOSED;
 
     public float letterBoxTime;
-    private float timer = 0;
 
     public string nextLevel;
-    public RectTransform topBar;
+    private RectTransform topBar;
     private RectTransform bottomBar;
-    private List<Vector2> open = new List<Vector2>();
-    private List<Vector2> closed = new List<Vector2>();
+    private List<Vector3> open = new List<Vector3>();
+    private List<Vector3> closed = new List<Vector3>();
 
     void Start()
     {
         // find letterBox
         topBar = GameObject.Find("topLetterBox").GetComponent<RectTransform>();
         bottomBar = GameObject.Find("bottomLetterBox").GetComponent<RectTransform>();
-        closed.Add(new Vector2(Screen.width / 2, Screen.height * 0.75f));
-        closed.Add(new Vector2(Screen.width / 2, Screen.height * 0.25f));
-        open.Add(new Vector2(Screen.width / 2, Screen.height * 1.25f));
-        open.Add(new Vector2(Screen.width / 2, Screen.height * -0.25f));
+        closed.Add(new Vector3(Screen.width / 2, Screen.height * 0.75f));
+        closed.Add(new Vector3(Screen.width / 2, Screen.height * 0.25f));
+        open.Add(new Vector3(Screen.width / 2, Screen.height * 1.25f));
+        open.Add(new Vector3(Screen.width / 2, Screen.height * -0.25f));
 
         fixScale();
         moveOpen();
@@ -33,47 +32,44 @@ public class switchScene : MonoBehaviour
 
     void Update()
     {
+        float step = (Screen.height * letterBoxTime * Time.deltaTime);
+
         switch (state)
         {
             case moveState.CLOSED:
-                topBar.position = closed[0];
-                bottomBar.position = closed[1];
+                SceneManager.LoadScene(nextLevel);
                 break;
             case moveState.OPEN:
-                topBar.position = open[0];
-                bottomBar.position = open[1];
                 break;
 
             case moveState.CLOSING:
-                topBar.position = Vector3.Lerp(open[0], closed[0], timer / letterBoxTime);
-                bottomBar.position = Vector3.Lerp(open[1], closed[1], timer / letterBoxTime);
-                timer += Time.deltaTime;
-                break;
+                {
+                    topBar.position = Vector3.MoveTowards(topBar.position, closed[0], step);
+                    bottomBar.position = Vector3.MoveTowards(bottomBar.position, closed[1], step);
+                    if (topBar.position == closed[0] && bottomBar.position == closed[1])
+                    {
+                        state = moveState.CLOSED;
+                    }
+                    break;
+                }
 
             case moveState.OPENING:
-                topBar.position = Vector3.Lerp(closed[0], open[0], timer / letterBoxTime);
-                bottomBar.position = Vector3.Lerp(closed[1], open[1], timer / letterBoxTime);
-                timer += Time.deltaTime;
-                break;
-        }
-        if (timer >= letterBoxTime)
-        {
-            if (state == moveState.CLOSING)
-            {
-                state = moveState.CLOSED;
-                SceneManager.LoadScene(nextLevel);
-            }
-            if (state == moveState.OPENING)
-            {
-                state = moveState.OPEN;
-            }
+                {
+                    topBar.position = Vector3.MoveTowards(topBar.position, open[0], step);
+                    bottomBar.position = Vector3.MoveTowards(bottomBar.position, open[1], step);
+                    if (topBar.position == open[0] && bottomBar.position == open[1])
+                    {
+                        state = moveState.OPEN;
+                    }
+                    break;
+                }
         }
     }
 
     // called once when the button is first pressed
     public void onPress()
     {
-        if(state == moveState.OPEN)
+        if (state == moveState.OPEN)
         {
             moveClose();
         }
@@ -89,14 +85,16 @@ public class switchScene : MonoBehaviour
     // animates the letterbox bars from closed to open
     void moveOpen()
     {
-        timer = 0;
+        topBar.transform.position = closed[0];
+        bottomBar.transform.position = closed[1];
         state = moveState.OPENING;
     }
 
     // animates the letterbox bars from open to closed
     void moveClose()
     {
-        timer = 0;
+        topBar.transform.position = open[0];
+        bottomBar.transform.position = open[1];
         state = moveState.CLOSING;
     }
 }
