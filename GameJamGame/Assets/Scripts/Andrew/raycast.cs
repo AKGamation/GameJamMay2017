@@ -16,7 +16,7 @@ public class raycast : MonoBehaviour
         ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         Debug.DrawRay(ray.origin, ray.direction, Color.cyan);
         // raycast
-        if (Physics.Raycast(ray, out hitInfo, playerReach, layerMask, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(ray, out hitInfo, playerReach, layerMask, QueryTriggerInteraction.UseGlobal))
         {
             hitInfo.collider.gameObject.GetComponent<buttonStateManager>().state = buttonStateManager.buttonState.HOVER;
             if (Input.GetMouseButton(0))
