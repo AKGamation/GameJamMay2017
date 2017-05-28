@@ -6,6 +6,7 @@ public class moveItem : MonoBehaviour
 {
     private bool pickedUp = false;
     private Collider myCollider;
+    public GameObject relatedScanner;
 
     void Start()
     {
@@ -55,7 +56,7 @@ public class moveItem : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "scanner")
+        if(other.gameObject == relatedScanner)
         {
             other.gameObject.GetComponent<DoorButtonsingle>().toggleMulti();
             Destroy(this.gameObject);

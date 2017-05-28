@@ -15,10 +15,14 @@ public class respawn : MonoBehaviour
     }
 
     // called when this object enters a respawn trigger
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "respawn")
         {
+            if(GetComponent<Rigidbody>())
+            {
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
             transform.position = startPosition;
             Debug.Log("respawning" + this.gameObject.name);
         }
