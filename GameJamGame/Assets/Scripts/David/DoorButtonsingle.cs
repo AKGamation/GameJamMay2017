@@ -9,7 +9,7 @@ public class DoorButtonsingle : MonoBehaviour {
 
 
 
-    void toggledoor()
+    public void toggledoor()
     {
         bool DoorOpen = DoorToControl.GetComponent<Doorbasic>().open;
 
@@ -23,7 +23,7 @@ public class DoorButtonsingle : MonoBehaviour {
         }
     }
 
-    void toggleMulti()
+    public void toggleMulti()
     {
         bool DoorOpen = DoorToControl.GetComponent<Doorbasic>().open;
         bool OtherDoorOpen = OtherDoor.GetComponent<Doorbasic>().open;

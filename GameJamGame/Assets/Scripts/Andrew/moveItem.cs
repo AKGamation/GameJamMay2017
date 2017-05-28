@@ -5,12 +5,10 @@ using UnityEngine;
 public class moveItem : MonoBehaviour
 {
     private bool pickedUp = false;
-    private Rigidbody myRigidBody;
     private Collider myCollider;
 
     void Start()
     {
-        myRigidBody = GetComponent<Rigidbody>();
         myCollider = GetComponent<Collider>();
     }
 
@@ -52,6 +50,15 @@ public class moveItem : MonoBehaviour
         {
             transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1.5f;
             transform.rotation = Camera.main.transform.rotation;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name == "scanner")
+        {
+            other.gameObject.GetComponent<DoorButtonsingle>().toggleMulti();
+            Destroy(this.gameObject);
         }
     }
 }

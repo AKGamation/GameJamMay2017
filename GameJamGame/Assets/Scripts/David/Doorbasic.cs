@@ -32,17 +32,9 @@ public class Doorbasic : MonoBehaviour {
 
     }
 
-   void toggleDoor()
+    // made this public and optimized
+   public void toggleDoor()
     {
-        if(open == true)
-        {
-            open = false;
-        }
-        else
-        {
-            open = true;
-        }
+        open = !open;
     }
-
-
 }

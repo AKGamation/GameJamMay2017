@@ -32,7 +32,7 @@ public class switchScene : MonoBehaviour
 
     void Update()
     {
-        float step = (Screen.height * letterBoxTime * Time.deltaTime);
+        float step = (Screen.height / 2 / letterBoxTime * Time.deltaTime);
 
         switch (state)
         {
