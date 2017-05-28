@@ -58,7 +58,7 @@ public class moveItem : MonoBehaviour
     {
         if(other.gameObject == relatedScanner)
         {
-            other.gameObject.GetComponent<DoorButton>().toggleMulti();
+            other.gameObject.GetComponent<switchScene>().onPress();
             Destroy(this.gameObject);
         }
     }
