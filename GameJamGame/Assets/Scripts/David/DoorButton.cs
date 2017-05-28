@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorButtonsingle : MonoBehaviour {
+public class DoorButton : MonoBehaviour {
     //give this a reference to the door
     public GameObject DoorToControl;
     public GameObject OtherDoor;
@@ -11,32 +11,22 @@ public class DoorButtonsingle : MonoBehaviour {
 
     public void toggledoor()
     {
-        bool DoorOpen = DoorToControl.GetComponent<Doorbasic>().open;
+        
 
-        if (DoorOpen == true)
-        {
-            DoorToControl.GetComponent<Doorbasic>().open = false;
-        }
-        else
-        {
-            DoorToControl.GetComponent<Doorbasic>().open = true;
-        }
+        
+          DoorToControl.GetComponent<Doorbasic>().toggleDoor();
+        
+        
     }
 
     public void toggleMulti()
     {
-        bool DoorOpen = DoorToControl.GetComponent<Doorbasic>().open;
-        bool OtherDoorOpen = OtherDoor.GetComponent<Doorbasic>().open;
-        if (DoorOpen == true)
-        {
-            DoorToControl.GetComponent<Doorbasic>().open = false;
-            OtherDoor.GetComponent<Doorbasic>().open = false;
-        }
-        else if(DoorOpen == false)
-        {
-            DoorToControl.GetComponent<Doorbasic>().open = true;
-            OtherDoor.GetComponent<Doorbasic>().open = true;
-        }
+        
+
+        DoorToControl.GetComponent<Doorbasic>().toggleDoor();
+        OtherDoor.GetComponent<Doorbasic>().toggleDoor();
+
+        
         
     }
 
