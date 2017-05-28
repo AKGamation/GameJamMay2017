@@ -57,7 +57,11 @@ public class moveItem : MonoBehaviour
     {
         if(other.gameObject.GetComponent<switchScene>())
         {
+<<<<<<< HEAD
             other.gameObject.GetComponent<switchScene>().changeLevel();
+=======
+            other.gameObject.GetComponent<switchScene>().onPress();
+>>>>>>> 1c8f9e151318ea4237e1bc54e74a58ee3a16e19b
             Destroy(this.gameObject);
         }
     }
