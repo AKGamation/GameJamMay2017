@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorButtonsingle : MonoBehaviour {
+public class DoorButton : MonoBehaviour {
     //give this a reference to the door
     public GameObject DoorToControl;
     public GameObject OtherDoor;
