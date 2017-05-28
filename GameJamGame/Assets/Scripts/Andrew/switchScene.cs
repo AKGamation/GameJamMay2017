@@ -67,7 +67,7 @@ public class switchScene : MonoBehaviour
     }
 
     // called once when the button is first pressed
-    public void onPress()
+    public void changeLevel()
     {
         if (state == moveState.OPEN)
         {

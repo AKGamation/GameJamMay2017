@@ -6,7 +6,6 @@ public class moveItem : MonoBehaviour
 {
     private bool pickedUp = false;
     private Collider myCollider;
-    public GameObject relatedScanner;
 
     void Start()
     {
@@ -56,9 +55,9 @@ public class moveItem : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject == relatedScanner)
+        if(other.gameObject.GetComponent<switchScene>())
         {
-            other.gameObject.GetComponent<DoorButton>().toggleMulti();
+            other.gameObject.GetComponent<switchScene>().changeLevel();
             Destroy(this.gameObject);
         }
     }
